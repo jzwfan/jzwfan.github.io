@@ -8,7 +8,7 @@ subtitle: ''
 description: ''
 keywords:
 author: jzwfan
-language: en
+language: zh-CN
 timezone: ''
 
 # URL
@@ -98,6 +98,14 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: oranges
+
+# 文章搜索
+search:
+  enable: true
+  path: search.xml
+  field: post
+  content: true
+  placeholder: 搜索...
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -1,5 +1,9 @@
 ---
 title: 使用hexo和git实现多地更新和配置博客源文件
+date: 2024-05-23
+categories:
+tags:
+  - Hexo
 ---
 使用[hexo](https://hexo.io/zh-cn/)写博客的一个问题就是源文件都是在本地的，如果换了电脑需要更新博客时就会比较麻烦。目前，觉得比较靠谱的办法就是用github来管理了。
 

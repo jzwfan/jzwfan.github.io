@@ -21,12 +21,12 @@
 # 网站图标
 favicon:
   enable: true
-  icon: /images/favicon.png
-  touch_icon: /images/favicon.png
+  icon: /images/jzw.png
+  touch_icon: /images/jzw.png
 
 # 用户头像与昵称
 avatar:
-  author_photo: /images/avatar.png
+  author_photo: /images/jzw.png
   author_nickname: jzwfan
   path: /
 
@@ -80,32 +80,32 @@ comments:
 # 主题页面导航栏
 navbar:
   -
-    name: Home
+    name: 首页
     enable: true
     path: /
     key: home
   -
-    name: Archives
+    name: 档案
     enable: true
     path: /archives/
     key: archives
   -
-    name: Categories
+    name: 类别
     enable: false
     path: /categories/
     key: categories
   -
-    name: Tags
+    name: 标签
     enable: true
     path: /tags/
     key: tags
   -
-    name: Friends
+    name: 朋友
     enable: false
     path: /friends/
     key: friends
   -
-    name: About
+    name: 关于
     enable: true
     path: /about/
     key: about
