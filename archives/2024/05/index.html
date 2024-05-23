@@ -1,432 +1,403 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		
-<title>文章归档-Quiet</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+<html lang="en" color-mode="light">
 
-<link rel="stylesheet" href="/css/index.css">
-
-
-<meta name="keywords" content="hexo主题,hexo扁平化主题,Quiet主题">
-<meta name="description" content="描述">
-
-
-<script src="/js/jquery.min.js"></script>
-
-
-<script src="/js/index.js"></script>
-
-
-<script src="/js/fancybox.umd.js"></script>
-
-
-<script src="/js/fancybox-images.js"></script>
-
-
-<script src="/js/gitalk.min.js"></script>
-
-
-<script src="/js/hljs.min.js"></script>
- 
-<script>hljs.highlightAll();</script>
-
-	<meta name="generator" content="Hexo 6.3.0"></head>
-
-	<body>
-		
-
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="jzwfan" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  
+  
+  <title>
     
+      archive_a: 2024/5 
+      
+      
+      |
     
-	<div class="header">
-		<div class="header-top" id="header-top">
-			<div class="h-left">
-				<a href="/">
-					<img src="/image/logo.png" alt="Quiet">
-				</a>
-			</div>
-			<div class="h-right">
-				<ul>
-					
-						
-								<li>
-									<a href="/">
-										HOME
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-							<li class="select">
-								<a href="/archives">
-									ARCHIVE
-								</a>
-								<span class="dot"></span>
-							</li>
-							
-									
-						
-								<li>
-									<a href="/categories">
-										CATEGORIES
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/tags">
-										TAGS
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/links">
-										LINKS
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/about">
-										ABOUT
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-				</ul>
-			</div>
-			<div class="h-right-close">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-					<path fill="none" d="M0 0h24v24H0z" />
-					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
-				</svg>
-			</div>
-		</div>
-	</div>
-	<div class="sidebar">
-    <div class="topo">
-        <h2>jzwfan</h2>
-    </div>
+     我们的小屋
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jzwfan</a></div>
+  </div>
+  <div class="navbar">
     <ul>
-        
-        <li>
-            <a href="/">HOME</a>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
         </li>
-        
-        <li>
-            <a href="/archives">ARCHIVE</a>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
         </li>
-        
-        <li>
-            <a href="/categories">CATEGORIES</a>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
         </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+
+<!-- last: 按年份把文章分组，当前遍历到的年份 -->
+<!-- now: 当前遍历到的文章的发布年份 -->
+
+<div class="container archives">
+  <div class="post-list">
+    
+        <!-- 后续文章的发布年份呈现 -->
+        <div class="content-title">
+          <h2>
+            <span>2024</span>
+          </h2>
+        </div>
+      
+      <div class="post-item" title="使用hexo和git实现多地更新和配置博客源文件">
+        <div class="time-m-d">05-23</div>
+        <div class="title">
+          <a href="/2024/05/23/2024/05/23/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgit%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%9C%B0%E6%9B%B4%E6%96%B0%E5%92%8C%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E6%BA%90%E6%96%87%E4%BB%B6/">
+            <span>使用hexo和git实现多地更新和配置博客源文件</span>
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="一个测试博客文档">
+        <div class="time-m-d">05-23</div>
+        <div class="title">
+          <a href="/2024/05/23/hello-world/">
+            <span>一个测试博客文档</span>
+          </a>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
         
+<div class="footer">
+  <div class="social">
+    <ul>
+      
         <li>
-            <a href="/tags">TAGS</a>
-        </li>
-        
-        <li>
-            <a href="/links">LINKS</a>
-        </li>
-        
-        <li>
-            <a href="/about">ABOUT</a>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
         </li>
         
     </ul>
-    <div class="my_foot">
-        
-        <a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
-            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
-        </a>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2024 jzwfan</a>
         
     </div>
-</div>
-<div class='shelter'>
-</div>
-<style>
-    .shelter{
-        background-color: #333;
-        opacity:0.5;
-        cursor: pointer;
-        display: none; 
-        position: fixed;
-        left: 0;
-        top: 0; 
-        right: 0;
-        bottom: 0;
-        z-index: 1998;
-    }
-    .sidebar {
-        width: 66%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        bottom: 0;
-        background: #fff;
-        z-index: 1999;
-        text-align: center;
-        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
-    }
-
-    .topo {
-        width: 100%;
-        height: 200px;
-        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
-        background-size: 100% 100%;
-        position: relative;
-        display: flex;
-        align-items: flex-end
-    }
-
-    .topo h2 {
-        color: #fff;
-        z-index: 1;
-        position: relative;
-        margin: 0 0 10px 10px;
-        font-size: 1.2em;
-        box-sizing: border-box
-    }
-
-    .topo:before {
-        content: '';
-        background-image: url(/image/pattern.png);
-        background-repeat: repeat;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1
-    }
-
-    .sidebar ul {
-        width: 100%;
-        margin-top: 50px
-    }
-
-    .sidebar ul li {
-        height: 50px;
-        list-style: none;
-        font-size: 1.2em;
-        text-align: right;
-        margin-right: 10px
-    }
-
-    .sidebar ul li a {
-        display: grid;
-        color: #5d606a;
-        text-overflow: ellipsis;
-        width: 100%;
-        text-decoration: none
-    }
-
-    .my_foot {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        position: absolute;
-        bottom: 0
-    }
-
-    .my_foot a {
-        text-decoration: none;
-        margin-right: 10px;
-        display: inline-block
-    }
-
-    .my_foot a img {
-        width: 30px;
-        height: 30px
-    }
-</style>
-
-<script>
-    $( function () {
-	$( '.h-right-close>svg' )
-		.click( function () {
-			$( '.sidebar' )
-				.animate( {
-					right: "0"
-				}, 500 );
-			$( '.shelter' )
-				.fadeIn( "slow" )
-		} );
-	$( '.shelter' )
-		.click( function ( e ) {
-			$( '.sidebar' )
-				.animate( {
-					right: "-100%"
-				}, 500 );
-			$( '.shelter' )
-				.fadeOut( "slow" )
-		} )
-} )
-
-</script>
-
+  
     
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
 
 
 
-<div class="archive">
-    
-        <div class="header-body-background">
-    <div class="header-body-background-content">
-        <span>
-            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imgicon-remixicon.svg" alt="Quiet">
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
         </span>
-
-        <h2>居然用了 1 年一共才写了 1 篇文章!</h2>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
     </div>
-</div>
-    
-    <div class="archive-content" id="content">
-        <div class="archive-content-data">
-            <div class="grouping">
-    
-        <p>
-            2024
-        </p>
-        
-        <a href="/2024/05/23/hello-world/">
-            <span>一个测试博客文档</span>
-            <time>05-23</time>
-        </a>
-        
-        
-</div>
-        </div>
-    </div>    
-</div>
+  </div>
 
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
 
-
-
-		
-<div class="footer">
-	<div class="Copyright">
-		©2024 By jzwfan. 主题：<a
-			style="text-decoration: none;display: contents; color: #898F9F;"
-			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
-	</div>
-	<div class="contact">
-		
-		<a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
-			<img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
-		</a>
-		
-	</div>
-</div>
-
-<script src="/js/gotop.js"></script>
-
-
-<style type="text/css">
-    @media screen and (min-width: 600px) {
-        .goTop>span {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            opacity: 0.8;
-            background: rgba(18, 24, 58, 0.06);
-            text-align: center;
-            transition: border .5s;
-            border: 1px solid rgba(18, 24, 58, 0.06);
-
-            -moz-transition: border .5s;
-            /* Firefox 4 */
-            -webkit-transition: border .5s;
-            /* Safari 和 Chrome */
-            -o-transition: border .5s;
-            /* Opera */
-        }
-
-        .goTop>span:hover {
-            border: 1px solid #6680B3;
-        }
-
-
-        .goTop {
-            position: fixed;
-            right: 30px;
-            bottom: 80px;
-        }
-
-        .goTop>span>svg {
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-        }
-
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
     }
 
-    @media screen and (max-width: 600px) {
-        .goTop {
-            display: none;
-        }
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
     }
-</style>
-<div class="goTop" id="js-go_top">
-    <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <g>
-                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
-            </g>
-        </svg>
-    </span>
-</div>
-<script>
-    $( '#js-go_top' )
-	.gotoTop( {
-		offset: 500,
-		speed: 300,
-		animationShow: {
-			'transform': 'translate(0,0)',
-			'transition': 'transform .5s ease-in-out'
-		},
-		animationHide: {
-			'transform': 'translate(100px,0)',
-			'transition': 'transform .5s ease-in-out'
-		}
-	} );
-</script>
 
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
 
-    <!-- Gitalk -->
-    <script>
-        const data = '{"clientID":"487c94b7fa315e4ba5c7","clientSecret":"d75b715813afb206882b56bfbba285392fbb8d28","repo":"blog-comments","owner":"jzwfan","admin":"jzwfan"}'
-        const gitalk = new Gitalk({
-            ...JSON.parse( data),
-            id:location.pathname,
-            distractionFreeMode:false
-        })
-        
-        if(Boolean('')){
-            gitalk.render('gitalk-container')
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
         }
-    </script>
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
 
-<script>
-	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
-</script>
-	</body>
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
 </html>
-
