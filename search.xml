@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Sql语句</title>
+      <link href="//db/sql.html"/>
+      <url>//db/sql.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>工作中遇到的SQL查询方法、语法、和优化记录。</p><hr><h3 id="SQL-方法和关键字"><a href="#SQL-方法和关键字" class="headerlink" title="SQL 方法和关键字"></a>SQL 方法和关键字</h3><h4 id="GROUP-COUNT-WM-COUNT"><a href="#GROUP-COUNT-WM-COUNT" class="headerlink" title="GROUP_COUNT\WM_COUNT"></a>GROUP_COUNT\WM_COUNT</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># mysql group_concat</span><br><span class="line"># separator 用来替换拼接字段， eg: 水果<span class="operator">-</span>素菜</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">group_concat(c.category_name separator <span class="string">&#x27;-&#x27;</span>) category_name,</span><br><span class="line">cs.store_id</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">dt_category_store <span class="keyword">as</span> cs</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span></span><br><span class="line">dt_category <span class="keyword">as</span> c</span><br><span class="line"><span class="keyword">on</span> </span><br><span class="line">cs.category_id <span class="operator">=</span> c.category_id <span class="keyword">and</span> cs.category_type <span class="operator">=</span> <span class="number">6</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> cs.store_id</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># dm wm_concat 方式</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">wm_concat(c.category_name) category_name,</span><br><span class="line">cs.store_id</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">dt_category_store <span class="keyword">as</span> cs</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span></span><br><span class="line">dt_category <span class="keyword">as</span> c</span><br><span class="line"><span class="keyword">on</span> </span><br><span class="line">cs.category_id <span class="operator">=</span> c.category_id <span class="keyword">and</span> cs.category_type <span class="operator">=</span> <span class="number">6</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> cs.store_id</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+            <tag> DM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mybatis下Mapper文件例子</title>
       <link href="//db/mybatis-mapper.html"/>
       <url>//db/mybatis-mapper.html</url>
@@ -73,7 +100,7 @@
       <link href="//hello-word.html"/>
       <url>//hello-word.html</url>
       
-        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次用hexo写博客，之前有自己用自己的服务器写过博客，但后来服务器出问题，不堪回首，现在要用这个来重写博客了！！！</p><h3 id="总要记录一点什么吧"><a href="#总要记录一点什么吧" class="headerlink" title="总要记录一点什么吧"></a>总要记录一点什么吧</h3><p>hexo的一些常用命令模版</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s # 启动服务</span><br><span class="line">hexo d -g # 编译项目并推送到github下mater分支</span><br><span class="line">hexo new post 测试 --path hexo/test # 创建title为测试文件名为test.md位置在hexo文件夹下的文章</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次用hexo写博客，之前有自己用自己的服务器写过博客，但后来服务器出问题，不堪回首，现在要用这个来重写博客了！！！</p><hr><h3 id="总要记录一点什么吧"><a href="#总要记录一点什么吧" class="headerlink" title="总要记录一点什么吧"></a>总要记录一点什么吧</h3><p>hexo的一些常用命令模版</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s # 启动服务</span><br><span class="line">hexo d -g # 编译项目并推送到github下mater分支</span><br><span class="line">hexo new post 测试 --path hexo/test # 创建title为测试文件名为test.md位置在hexo文件夹下的文章</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
