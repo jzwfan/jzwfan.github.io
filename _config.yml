@@ -121,5 +121,6 @@ kramed:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repository: git@github.com:jzwfan/jzwfan.github.io.git
+  # repository: git@github.com:jzwfan/jzwfan.github.io.git
+  repository: https://github.com/jzwfan/jzwfan.github.io.git
   branch: master
