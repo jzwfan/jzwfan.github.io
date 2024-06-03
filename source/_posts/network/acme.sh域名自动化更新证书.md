@@ -1,9 +1,11 @@
 ---
 title: 域名自动化更新证书
 date: 2024-05-24
+permalink: network/acme_sh.html
 categories:
   - Network
 tags: 
+cover: img/cover/6.jpg
 ---
 
 ### 前言
@@ -59,26 +61,25 @@ tags:
 
 $$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$
 $$W_G^{mn}=max\{0,W_G.\xi_G(f_G^m,f_G^n)\}$$
-
 $$
 \begin{Bmatrix}
    a & b \\
-   c & d \\ 
+   c & d \\
 \end{Bmatrix}
 $$
 $$
 \begin{CD}
-   A @>a>> B\\
-@VbVV @AAcA\\
+   A @>a>> B \\
+@VbVV @AAcA \\
    C @= D
 \end{CD}
 $$
 
 $$\begin{bmatrix}
-{a_{11}}&{a_{12}}&{\cdots}&{a_{1n}}\\
-{a_{21}}&{a_{22}}&{\cdots}&{a_{2n}}\\
-{\vdots}&{\vdots}&{\ddots}&{\vdots}\\
-{a_{m1}}&{a_{m2}}&{\cdots}&{a_{mn}}\\
+{a_{11}}&{a_{12}}&{\cdots}&{a_{1n}} \\
+{a_{21}}&{a_{22}}&{\cdots}&{a_{2n}} \\
+{\vdots}&{\vdots}&{\ddots}&{\vdots} \\
+{a_{m1}}&{a_{m2}}&{\cdots}&{a_{mn}} \\
 \end{bmatrix}$$
 
 $$\begin{cases}
@@ -87,9 +88,7 @@ a_2x+b_2y+c_2z=d_2\\
 a_3x+b_3y+c_3z=d_3\\
 \end{cases}$$
 
-
-
-```mermaid
+``` mermaid
 gantt         
        dateFormat  YYYY-MM-DD   
        title 使用mermaid语言定制甘特图
@@ -99,7 +98,7 @@ gantt
        正在进行的任务				 :active,  des2, 2014-01-09, 3d
        待完成任务1            :         des3, after des2, 5d
        待完成任务2						 :         des4, after des3, 5d
-
+    
        section 关键任务
        已完成的关键任务 :crit, done, 2014-01-06,24h
        已完成的关键任务2         :crit, done, after des1, 2d
@@ -107,7 +106,7 @@ gantt
        待完成的关键任务        :crit, 5d
        待完成任务           :2d
        待完成任务2                      :1d
-
+    
        section 文档编写
        描述甘特图语法               :active, a1, after des1, 3d
        完成甘特图实例1      :after a1  , 20h

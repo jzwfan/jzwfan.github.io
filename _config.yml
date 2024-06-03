@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://jzwfan.github.io
+url: https://jzwfan.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -50,6 +50,7 @@ highlight:
   tab_replace: ''
   wrap: true
   hljs: false
+  exclude_languages: ['mermaid']
 prismjs:
   enable: false
   preprocess: true
@@ -97,8 +98,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: oranges
-
+#theme: oranges
+theme: butterfly
 # 文章搜索
 search:
   enable: true
@@ -107,7 +108,14 @@ search:
   content: true
   placeholder: 搜索...
 
-
+kramed:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

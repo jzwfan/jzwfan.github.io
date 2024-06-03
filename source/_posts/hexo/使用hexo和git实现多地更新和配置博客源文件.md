@@ -1,6 +1,8 @@
 ---
 title: 使用hexo和git实现多地更新和配置博客源文件
 date: 2024-05-23
+permalink: hexo/hexo-git.html
+cover: /img/cover/11.jpg
 categories:
 tags:
   - Hexo
@@ -55,7 +57,7 @@ tags:
 - 依次执行git add .、git commit -m ‘back up hexo files’（引号内容可改）、git push指令，保证xxx分支版本最新
 - 执行hexo d -g指令（在此之前，有时可能需要执行hexo clean），完成后就会发现，最新改动已经更新到master分支了，两个分支互不干扰！
 
-### 4、回到hexo服务器端电脑更新并提交博客
+### 四、回到hexo服务器端电脑更新并提交博客
 
 
 
