@@ -2,9 +2,10 @@
 title: 关于我
 date: 2019-05-03 12:03:35
 type: "about"
+cover:
 categories:
 tags:
-top_img: https://jsd.012700.xyz/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg
+top_img:
 ---
 第一次用hexo写博客，之前有自己用自己的服务器写过博客，但后来服务器出问题，不堪回首，现在要用这个来重写博客了！！！
 
