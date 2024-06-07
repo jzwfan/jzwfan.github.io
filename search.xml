@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>css实用代码合集</title>
+      <link href="//html/practical-css.html"/>
+      <url>//html/practical-css.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>记录一些在工作和写博客中遇到的一些CSS代码场景,可能这些用的不多，以后也很敢再遇到新的逻辑代码,但总要养成遇到就要记录的习惯。</p><h3 id="img图片保持比例且居中显示"><a href="#img图片保持比例且居中显示" class="headerlink" title="img图片保持比例且居中显示"></a>img图片保持比例且居中显示</h3><p> 外部容器设置 固定宽度高度，设置line-height与height相等（垂直居中），设置text-align是center(水平居中)，内部img设置style（max-height:100%;max-width:100%;vertical-align: middle; <a href="https://so.csdn.net/so/search?q=margin&amp;spm=1001.2101.3001.7020">margin</a>: 0 auto;）。</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 398px;height: 298px;line-height: 298px;text-align: center;border:1px solid #E09972&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;test.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;max-width:100%;max-height:100%;vertical-align: middle; margin: 0 auto;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><p>源地址：<a href="https://blog.csdn.net/shijie_nihao/article/details/106348591">https://blog.csdn.net/shijie_nihao/article/details/106348591</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> CSS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>减肥记录</title>
       <link href="//live/lose-weight-records.html"/>
       <url>//live/lose-weight-records.html</url>
       
-        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在2022年七月，做过一次ercp手术，一个160斤的小胖子瘦到了140斤，当时天真的以为以后一定能保证自己不再胖回来，结果过年回家就胖回到了160斤，然后就自暴自弃的放弃了自己的减肥计划，也<del>没再在意过自己的体重</del>（没敢上称）。今天，因为怀疑小猫是不是得了猫传腹，给猫子称重时，不得不拿自己当工具，结果现在几乎到了200斤了，故今天开减肥记录的文章，以激励自己每天减肥打卡。</p><hr><h3 id="2024-06"><a href="#2024-06" class="headerlink" title="2024.06"></a>2024.06</h3><h4 id="第零天（6月5日｜周三）"><a href="#第零天（6月5日｜周三）" class="headerlink" title="第零天（6月5日｜周三）"></a>第零天（6月5日｜周三）</h4><p><img src="https://images.jzwfan.com/image/2024/06/06/000921-0.jpg" alt="体重信息"></p>]]></content>
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在2022年七月，做过一次ercp手术，一个160斤的小胖子瘦到了140斤，当时天真的以为以后一定能保证自己不再胖回来，结果过年回家就胖回到了160斤，然后就自暴自弃的放弃了自己的减肥计划，也<del>没再在意过自己的体重</del>（没敢上称）。今天，因为怀疑小猫是不是得了猫传腹，给猫子称重时，不得不拿自己当工具，结果现在几乎到了200斤了，故今天开减肥记录的文章，以激励自己每天减肥打卡。</p><hr><h3 id="2024-06"><a href="#2024-06" class="headerlink" title="2024.06"></a>2024.06</h3><h4 id="第零天（6月5日｜周三）"><a href="#第零天（6月5日｜周三）" class="headerlink" title="第零天（6月5日｜周三）"></a>第零天（6月5日｜周三）</h4><center style="overflow: hidden;width: 100%;height: 600px;text-align:center">    <img style="width: 500px;" src="https://images.jzwfan.com/image/2024/06/06/000134-0.jpeg" alt=""></center><h4 id="第一天（6月6日｜周四）"><a href="#第一天（6月6日｜周四）" class="headerlink" title="第一天（6月6日｜周四）"></a>第一天（6月6日｜周四）</h4><ul><li>早饭：八宝粥一杯，鸡蛋一个</li><li>中午：麻辣烫一份，忘记拍了，买的东西还没到，公司附近吃的都差不多</li><li>晚上：步行回家，吃了一份煎鱼和鸡胸肉</li></ul><p>下午3点半吃了几颗糖炒花生，忘记拍了</p><center class="half" style="overflow:hidden">      <div style="width: 157px;height: 150px;line-height: 150px;text-align: center;float:left;padding-bottom:10px;">        <img src="https://images.jzwfan.com/image/2024/06/07/092938-0.png" style="max-width:100%;max-height:100%;vertical-align: middle; margin: 0 auto;" alt="">    </div>    <div style="width: 157px;height: 150px;line-height: 150px;text-align: center;float:left;padding-bottom:10px;">        <img src="https://images.jzwfan.com/image/2024/06/07/093334-0.png" style="max-width:100%;max-height:100%;vertical-align: middle; margin: 0 auto;" alt="">    </div></center>]]></content>
       
       
       <categories>
