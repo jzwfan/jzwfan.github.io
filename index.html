@@ -51,7 +51,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-06-07 09:35:21'
+  postUpdate: '2024-06-11 08:58:03'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -162,71 +162,13 @@ SQL 方法和关键字GROUP_COUNT\WM_COUNT# mysql group_concat# separator 用来
 choose 用法&lt;choose&gt;    &lt;when test=&quot;reqVo.inspectionType == 3&quot;&gt;        SQL1...    &lt;/when&gt;    &lt;when test=&quot;reqVo.inspectionType == 4&quot;&gt;        SQL2...    &lt;/when&gt;    &lt;otherwise&gt;        SQL3...    &lt;/otherwise&gt;&lt;/choose&gt;
 foreach 用法&lt;foreach collection=&quot;categoryIds&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot; item=&quot;categoryId&quot;&gt;    #&#123;categoryId&#125 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/network/acme_sh.html" title="域名自动化更新证书"><img class="post-bg" src="/img/cover/6.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="域名自动化更新证书"></a></div><div class="recent-post-info"><a class="article-title" href="/network/acme_sh.html" title="域名自动化更新证书">域名自动化更新证书</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-23T16:00:00.000Z" title="发表于 2024-05-24 00:00:00">2024-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></span></div><div class="content">前言目前免费证书的使用期限是90天，证书更新也从以前的一年一换变成了现在的三个月一换，本人自己域名加公司域名有近四十个之多，每次证书更新都是一个很费事又费时的工作，不得不进行自动化处理。
 
-斜体 粗体 粗斜体
-下划线 删除线
-
-
-1
-2
-3
-5
-
-
-qhjfj
-ffdgdh
-
-123
-243546
-
-2335454
-6568
-
-56
-
-
-
-
-&lt;?php echo 111&gt;
-Aaa
-
-
-
-
-11
-22
-33
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-使用 Ctrl+Alt+Del 重启电脑
-\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}tW_G^{mn}=max\{0,W_G.\xi_G(f_G^m,f_G^n)\}
-\begin{Bmatrix}
-   a & b \\
-   c & d \\
-\end{Bmatrix}
-\begin{CD}
-   A @>a>> B \\
-@VbVV @AAcA \\
-   C @= D
-\end{CD}\begin{bmatrix}
-{a_{11}}&{a_{12}}&{\cdots}&{a_{1n}} \\ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/hexo/hexo-git.html" title="使用hexo和git实现多地更新和配置博客源文件"><img class="post-bg" src="/img/cover/11.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="使用hexo和git实现多地更新和配置博客源文件"></a></div><div class="recent-post-info"><a class="article-title" href="/hexo/hexo-git.html" title="使用hexo和git实现多地更新和配置博客源文件">使用hexo和git实现多地更新和配置博客源文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-22T16:00:00.000Z" title="发表于 2024-05-23 00:00:00">2024-05-23</time></span></div><div class="content">前言使用hexo写博客的一个问题就是源文件都是在本地的，如果换了电脑需要更新博客时就会比较麻烦。目前，觉得比较靠谱的办法就是用github来管理了。
+安装安装很简单，一个命令:
+curl https://get.acme.sh | sh -s email=my@example.com
+创建 一个 shell 的 alias，例如 .bashrc，方便你的使用: alias acme.sh=~/.acme.sh/acme.sh；
+自动为你创建 cronjob,，每天 0:00 点自动检测所有的证书， 如果快过期了，需要更新，则会自动更新证书。
+注：如果没有安装crontab，可在安装crontab之后加入以下任务：
+0 0 * * * &quot;~/.acme.sh&quot;/acme.sh --cron --home &quot;~/.acme.sh&quot; &gt; /dev/null
+更改服务地址acme.sh脚本默认ca服务器是zerossl，经常出错，会导致获取证书的时候一直出现：Pending，The CA is process ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/hexo/hexo-git.html" title="使用hexo和git实现多地更新和配置博客源文件"><img class="post-bg" src="/img/cover/11.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="使用hexo和git实现多地更新和配置博客源文件"></a></div><div class="recent-post-info"><a class="article-title" href="/hexo/hexo-git.html" title="使用hexo和git实现多地更新和配置博客源文件">使用hexo和git实现多地更新和配置博客源文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-22T16:00:00.000Z" title="发表于 2024-05-23 00:00:00">2024-05-23</time></span></div><div class="content">前言使用hexo写博客的一个问题就是源文件都是在本地的，如果换了电脑需要更新博客时就会比较麻烦。目前，觉得比较靠谱的办法就是用github来管理了。
 
 利用git分支实现
 hexo生成的静态博客文件默认放在master分支上。
@@ -251,7 +193,7 @@ hexo s # 启动服务hexo d -g # 编译项目并推送到github下mater分支hex
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/"><span class="card-category-list-name">生活</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.1em; color: #999">生活</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/DM/" style="font-size: 1.1em; color: #999">DM</a> <a href="/tags/%E5%87%8F%E8%82%A5/" style="font-size: 1.1em; color: #999">减肥</a> <a href="/tags/Mybatis/" style="font-size: 1.1em; color: #999">Mybatis</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/Mysql/" style="font-size: 1.5em; color: #99a9bf">Mysql</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-11-30T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-06-07T01:35:21.748Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/index.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By jzwfan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><script type="text/javascript" id="maid-script" src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js?v=undefined"></script><script>if (window.mermaid) {
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.1em; color: #999">生活</a> <a href="/tags/%E5%87%8F%E8%82%A5/" style="font-size: 1.1em; color: #999">减肥</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/Mysql/" style="font-size: 1.5em; color: #99a9bf">Mysql</a> <a href="/tags/Mybatis/" style="font-size: 1.1em; color: #999">Mybatis</a> <a href="/tags/DM/" style="font-size: 1.1em; color: #999">DM</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-11-30T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-06-11T00:58:03.783Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/index.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By jzwfan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><script type="text/javascript" id="maid-script" src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js?v=undefined"></script><script>if (window.mermaid) {
   var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
   mermaid.initialize(options);
 }</script></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>window.typedJSFn = {
