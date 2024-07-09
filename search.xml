@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>yum换源</title>
+      <link href="//linux/yum-change-source.html"/>
+      <url>//linux/yum-change-source.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用yum的官方源进行yum install xxxx 的时候，速度非常慢，只有几kB/s，有时候还不到1kB/s。这就会造成安装包的速度的速度要么特变慢，要么就根本安装不了。</p><hr><h3 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h3><h4 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</span><br></pre></td></tr></table></figure><h4 id="下载新的-CentOS-Base-repo-到-etc-yum-repos-d"><a href="#下载新的-CentOS-Base-repo-到-etc-yum-repos-d" class="headerlink" title="下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/"></a>下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Centos6</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Centos7</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure><p>注：如果没有安装<code>wget</code>，可本地访问网址下载，上传到服务器。</p><h4 id="清理并生成新的缓存"><a href="#清理并生成新的缓存" class="headerlink" title="清理并生成新的缓存"></a>清理并生成新的缓存</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum clean &amp; yum makecache</span><br></pre></td></tr></table></figure><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>有时候可能阿里源不可用，可替换清华源等。</p><p>原地址：<a href="https://blog.csdn.net/wudinaniya/article/details/105758739">https://blog.csdn.net/wudinaniya/article/details/105758739</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>达梦数据导入导出</title>
       <link href="//db/dimp-and-dexp.html"/>
       <url>//db/dimp-and-dexp.html</url>
