@@ -68,6 +68,95 @@ from
 group by cs.store_id
 ```
 
+#### LEFT（从**左**开始截取字符串）
+
+用法：left(str, length)，即：left(被截取字符串， 截取长度)
+
+```sql
+SELECT LEFT('www.jzwfan.com',8)
+```
+
+结果为：www.jzwf
+
+#### RIGHT(从**右**开始截取字符串)
+
+用法：right(str, length)，即：right(被截取字符串， 截取长度)
+
+```SQL
+SELECT RIGHT('www.jzwfan.com',6)
+```
+
+结果为：an.com
+
+#### SUBSTRING(截取**特定长度**的字符串)
+
+用法：
+
+- substring(str, pos)，即：substring(被截取字符串， 从第几位开始截取)
+- substring(str, pos, length)，即：substring(被截取字符串，从第几位开始截取，截取长度)
+
+1.从字符串的第9个字符开始读取直至结束
+
+```sql
+SELECT SUBSTRING('www.jzwfan.com', 9)
+```
+
+结果为：an.com
+
+2.从字符串的第5个字符开始，只取3个字符
+
+```sql
+SELECT SUBSTRING('www.jzwfan.com', 5, 3)
+```
+
+结果为：jzw
+
+3.从字符串的倒数第6个字符开始读取直至结束
+
+```sql
+SELECT SUBSTRING('www.jzwfan.com', -6)
+```
+
+结果为：an.com
+
+4.从字符串的倒数第6个字符开始读取，只取2个字符
+
+```sql
+SELECT SUBSTRING('www.jzwfan.com', -6, 2)
+```
+
+结果为：an
+
+#### SUBSTRING_INDEX(按**关键字**进行读取)
+
+用法：substring_index(str, delim, count)，即：substring_index(被截取字符串，关键字，关键字出现的次数)
+
+1.截取第二个“.”之**前**的所有字符
+
+```sql
+SELECT SUBSTRING_INDEX('www.jzwfan.com', '.', 2);
+```
+
+结果为：www.jzwfan
+
+2.截取倒数第二个“.”之**后**的所有字符
+
+```sql
+SELECT SUBSTRING_INDEX('www.jzwfan.com', '.', -2);
+```
+
+结果为：jzwfan.com
+
+3.如果关键字不存在，则返回整个字符串
+
+```sql
+SELECT SUBSTRING_INDEX('www.yuanrengu.com', 'sprite', 1);
+```
+
+结果为：www.jzwfan.com
+
+以上，源地址：https://www.cnblogs.com/heyonggang/p/8117754.html
+
 #### FROM_UNXITIME(时间戳格式化)
 
 ```sql
