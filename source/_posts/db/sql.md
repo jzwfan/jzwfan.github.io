@@ -160,7 +160,7 @@ SELECT SUBSTRING_INDEX('www.yuanrengu.com', 'sprite', 1);
 #### FROM_UNIXTIME(时间戳格式化)
 
 ```sql
-# FROM_UNXITIME(unix_timestamp, format)
+# FROM_UNIXTIME(unix_timestamp, format)
 SELECT FROM_UNIXTIME(1459338786, '%Y-%m-%d %H:%i:%s');
 ```
 
