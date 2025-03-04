@@ -157,11 +157,11 @@ SELECT SUBSTRING_INDEX('www.yuanrengu.com', 'sprite', 1);
 
 以上，源地址：https://www.cnblogs.com/heyonggang/p/8117754.html
 
-#### FROM_UNXITIME(时间戳格式化)
+#### FROM_UNIXTIME(时间戳格式化)
 
 ```sql
 # FROM_UNXITIME(unix_timestamp, format)
-SELECT FROM_UNXITIME(1459338786, '%Y-%m-%d %H:%i:%s');
+SELECT FROM_UNIXTIME(1459338786, '%Y-%m-%d %H:%i:%s');
 ```
 
 format格式说明：

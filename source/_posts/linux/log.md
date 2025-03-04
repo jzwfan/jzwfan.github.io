@@ -47,3 +47,15 @@ lastlog		#查看所有账户的最近一次登录信息
 ```shell
  cat /home/{username}/.bash_history
 ```
+
+### 设置操作记录时间格式
+
+```shell
+echo 'export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "' >> /etc/bash.bashrc 
+echo 'export HISTSIZE=-1' >> /etc/bash.bashrc # -1为保存所有
+echo 'HISTTIMEFORMAT="%F %T "' >> /etc/profile
+source /etc/profile
+```
+
+
+
