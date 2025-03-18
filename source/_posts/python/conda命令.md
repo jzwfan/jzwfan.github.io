@@ -5,7 +5,7 @@ hide: false
 date: 2025-03-11 13:48:27
 permalink: python/conda-command.html
 tags:
- - Python
+ - python
  - conda
 categories:
  - Python

@@ -5,7 +5,7 @@ hide: false
 date: 2025-03-04 11:37:28
 permalink: linux/network-hard-disk.html
 tags:
- - Linux
+ - linux
  - 网络硬盘
 categories:
  - Linux

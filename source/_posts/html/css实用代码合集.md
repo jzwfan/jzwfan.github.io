@@ -6,7 +6,7 @@ date: 2024-06-06 16:09:43
 permalink: html/practical-css.html
 tags:
  - 前端
- - CSS
+ - css
 categories:
  - 前端
 keywords:

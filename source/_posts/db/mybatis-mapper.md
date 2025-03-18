@@ -6,8 +6,8 @@ hide: false
 date: 2024-06-03 11:39:03
 permalink: db/mybatis-mapper.html
 tags: 
- - Mysql
- - Mybatis
+ - mysql
+ - mybatis
 categories:
  - 数据库
 keywords:

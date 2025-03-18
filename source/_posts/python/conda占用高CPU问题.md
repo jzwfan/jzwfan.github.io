@@ -5,7 +5,7 @@ hide: false
 date: 2025-03-11 13:45:24
 permalink: python/conda-problem0.html
 tags:
- - Python
+ - python
  - conda
 categories:
  - Python

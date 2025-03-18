@@ -5,7 +5,7 @@ permalink: hexo/hexo-git.html
 cover: /img/cover/11.jpg
 categories:
 tags:
-  - Hexo
+  - hexo
 ---
 ### 前言
 

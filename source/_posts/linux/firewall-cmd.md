@@ -5,7 +5,7 @@ hide: false
 date: 2024-06-28 01:16:57
 permalink: linux/firewall-cmd.html
 tags:
-  - Linux
+  - linux
   - 防火墙
 categories:
   - Linux

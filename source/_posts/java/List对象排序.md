@@ -5,9 +5,9 @@ hide: false
 date: 2024-06-19 13:53:16
 permalink: java/collections-sort.html
 tags:
- - Java
- - List
- - Sort
+ - java
+ - list
+ - sort
 categories: 
  - Java
 keywords:

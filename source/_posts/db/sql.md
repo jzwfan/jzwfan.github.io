@@ -5,7 +5,7 @@ hide: false
 date: 2024-06-03 17:33:25
 permalink: db/sql.html
 tags:
- - Mysql
+ - mysql
  - DM
 categories:
  - 数据库

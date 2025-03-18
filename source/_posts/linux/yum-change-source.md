@@ -5,7 +5,7 @@ hide: false
 date: 2024-07-09 13:56:57
 permalink: linux/yum-change-source.html
 tags:
-  - Linux
+  - linux
 categories:
   - Linux
 keywords:

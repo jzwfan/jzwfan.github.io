@@ -5,7 +5,7 @@ hide: false
 date: 2024-09-18 11:02:27
 permalink: linux/log.html
 tags:
-  - Linux
+  - linux
 categories:
   - Linux
 keywords:
