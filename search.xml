@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>git项目同步上游项目到本项目</title>
+      <link href="//git/git-fork-sync.html"/>
+      <url>//git/git-fork-sync.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天工作是遇到部分功能更新要在上游和本地项目中同步更新，不想两个项目都要同步复制代码，于是想到了git fork的子项目可以拉取上游项目的理，便做一下相关记录</p><hr><h3 id="查看项目绑定的远程仓库地址"><a href="#查看项目绑定的远程仓库地址" class="headerlink" title="查看项目绑定的远程仓库地址"></a>查看项目绑定的远程仓库地址</h3><p>用以下命令查看当前项目绑定的远程仓库</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure><p>输出：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">originhttps://github.com/gyx/java-dgjy-build-admin.git (fetch)</span><br><span class="line">originhttps://github.com/gyx/java-dgjy-build-admin.git (push)</span><br></pre></td></tr></table></figure><h3 id="添加新的远程仓库地址"><a href="#添加新的远程仓库地址" class="headerlink" title="添加新的远程仓库地址"></a>添加新的远程仓库地址</h3><p>用以下明令添加上游项目的远程仓库的地址：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加新仓库 upstream(上游) 可以自定义</span></span><br><span class="line">git remote add upstream https://github.com/gyx/java-dgjy-build.git</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取远程仓库地址分支信息</span></span><br><span class="line">git fetch upstream</span><br></pre></td></tr></table></figure><p>注：两个仓库有相同的分支名的时候，最好不要直接checkout上游分支，可能和本地分支冲突。</p><p>再用上一步命令查看已绑定的远程仓库的地址输出如下：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">originhttps://github.com/gyx/java-dgjy-build-admin.git (fetch)</span><br><span class="line">originhttps://github.com/gyx/java-dgjy-build-admin.git (push)</span><br><span class="line">upstreamhttps://github.com/gyx/java-dgjy-build.git (fetch)</span><br><span class="line">upstreamhttps://github.com/gyx/java-dgjy-build.git (push)</span><br></pre></td></tr></table></figure><h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>剩下的操作就都可以直接用idea等git管理软件来完成了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> fork </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>conda命令</title>
       <link href="//python/conda-command.html"/>
       <url>//python/conda-command.html</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> conda </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> conda </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -74,9 +101,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 网络硬盘 </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
@@ -92,6 +119,18 @@
         <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>目前国内把docker镜像仓库墙了，很多服务器要更新新的镜像都要用本地导入的方式更新镜像，多台服务器用起来就很麻烦，同样的，家里的nas群晖也没办法很好的用docker了，为了以后方便，又因为自己博客网站服务器就在香港，可以用这个服务器搭建一个私人镜像仓库。</p><hr><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul><li>服务器：centos7服务器 -1核2G，40G硬盘（自己用，目前还不用扩充硬盘）</li><li>docker镜像：docker.io/library/registry:latest</li></ul><h3 id="搭建服务端"><a href="#搭建服务端" class="headerlink" title="搭建服务端"></a>搭建服务端</h3><h4 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull registry</span><br></pre></td></tr></table></figure><h4 id="创建相关文件夹"><a href="#创建相关文件夹" class="headerlink" title="创建相关文件夹"></a>创建相关文件夹</h4><p>本人项目放在<code>/data/docker-space/docker-registry-deploy</code>文件夹下，以下所有涉及到文件和文件夹相关的命令都是已该文件夹为根目录。</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir auth config data</span><br></pre></td></tr></table></figure><p>注：<code>auth</code>文件夹存放加密的用户名密码文件<code>htpasswd</code>，<code>config</code>文件夹存放容器的配置文件<code>config.yml</code>，<code>data</code>文件夹挂载上传的镜像文件。</p><h4 id="创建用户加密文件：htpasswd"><a href="#创建用户加密文件：htpasswd" class="headerlink" title="创建用户加密文件：htpasswd"></a>创建用户加密文件：htpasswd</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run --entrypoint htpasswd registry:latest -Bbn name password123  &gt; ./auth/htpasswd</span><br></pre></td></tr></table></figure><p>注：以上方式我这边报以下错误:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: &quot;htpasswd&quot;: executable file not found in $PATH: unknown.</span><br></pre></td></tr></table></figure><p>本人查询到别的处理方式是安装httpd，用该软件创建加密文件</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、安装httpd软件</span></span><br><span class="line">yum install httpd</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、用该软件创建用户密码加密文件</span></span><br><span class="line">htpasswd -Bbn test 123456  &gt; auth/htpasswd</span><br></pre></td></tr></table></figure><h4 id="编写配置文件：config-yml"><a href="#编写配置文件：config-yml" class="headerlink" title="编写配置文件：config.yml"></a>编写配置文件：config.yml</h4><p>配置文件内容如下：</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="number">0.1</span></span><br><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">fields:</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">registry</span></span><br><span class="line"><span class="attr">storage:</span></span><br><span class="line">  <span class="attr">delete:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">blobdescriptor:</span> <span class="string">inmemory</span></span><br><span class="line">  <span class="attr">filesystem:</span></span><br><span class="line">    <span class="attr">rootdirectory:</span> <span class="string">/var/lib/registry</span></span><br><span class="line"><span class="attr">http:</span></span><br><span class="line">  <span class="attr">addr:</span> <span class="string">:5000</span></span><br><span class="line">  <span class="attr">headers:</span></span><br><span class="line">    <span class="attr">X-Content-Type-Options:</span> [<span class="string">nosniff</span>]</span><br><span class="line"><span class="attr">health:</span></span><br><span class="line">  <span class="attr">storagedriver:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">interval:</span> <span class="string">10s</span></span><br><span class="line"><span class="attr">threshold:</span> <span class="number">3</span></span><br></pre></td></tr></table></figure><h4 id="启动创建与运行脚本"><a href="#启动创建与运行脚本" class="headerlink" title="启动创建与运行脚本"></a>启动创建与运行脚本</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5000:5000 --restart=always  --name=registry \</span><br><span class="line">-v $PWD/config/:/etc/docker/registry/ \</span><br><span class="line">-v $PWD/auth/:/auth/ \</span><br><span class="line">-e &quot;REGISTRY_AUTH=htpasswd&quot; \</span><br><span class="line">-e &quot;REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm&quot; \</span><br><span class="line">-e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \</span><br><span class="line">-v $PWD/data/:/var/lib/registry/ \</span><br><span class="line">registry:latest</span><br></pre></td></tr></table></figure><h4 id="验证服务可用性"><a href="#验证服务可用性" class="headerlink" title="验证服务可用性"></a>验证服务可用性</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">无认证的私有仓库：</span></span><br><span class="line">curl -X GET http://ip:port/v2/_catalog</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">带认证的私有仓库</span></span><br><span class="line">curl -u username:password -X GET http://ip:port/v2/_catalog</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">带认证的不带-u参数，因验证不通过会报如下错误：</span></span><br><span class="line">&#123;&quot;errors&quot;:[&#123;&quot;code&quot;:&quot;UNAUTHORIZED&quot;,&quot;message&quot;:&quot;authentication required&quot;,&quot;detail&quot;:[&#123;&quot;Type&quot;:&quot;registry&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Name&quot;:&quot;catalog&quot;,&quot;Action&quot;:&quot;*&quot;&#125;]&#125;]&#125;</span><br></pre></td></tr></table></figure><h3 id="客户端设置"><a href="#客户端设置" class="headerlink" title="客户端设置"></a>客户端设置</h3><p>编辑 <code>/etc/docker/deamon.json</code>文件（如果没有自己创建该文件）,添加以下内容</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;&quot;insecure-registries&quot;:[&quot;http://ip:port&quot;,&quot;http://ip&quot;]&#125;</span><br></pre></td></tr></table></figure><p>说明：把IP改成服务器IP，端口一般是5000</p><p>重启docker服务，命令如下：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新配置</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启服务</span></span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure><p>在群晖ContainerManager 插件中要改以下文件：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /var/packages/ContainerManager/etc/dockerd.json</span><br></pre></td></tr></table></figure><p>然后重启插件</p><h3 id="清理仓库镜像"><a href="#清理仓库镜像" class="headerlink" title="清理仓库镜像"></a>清理仓库镜像</h3><p>这个我得回去找找，以前不写博客，写过一个清理脚本，不知道还能不能找回来。</p><hr><p><del>参考</del>抄袭文章：</p><p><a href="https://blog.csdn.net/qq_38637558/article/details/99603071">搭建docker私有仓库 配置用户名密码</a></p><p><a href="https://blog.csdn.net/m0_61209018/article/details/121698444">docker 私人仓库 设置密码报错（已解决）</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+        </tags>
       
     </entry>
     
@@ -114,7 +153,7 @@
       
         <tags>
             
-            <tag> Linux </tag>
+            <tag> linux </tag>
             
         </tags>
       
@@ -158,7 +197,7 @@
       
         <tags>
             
-            <tag> Linux </tag>
+            <tag> linux </tag>
             
         </tags>
       
@@ -208,9 +247,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 防火墙 </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
@@ -235,11 +274,11 @@
       
         <tags>
             
-            <tag> Java </tag>
+            <tag> java </tag>
             
-            <tag> List </tag>
+            <tag> list </tag>
             
-            <tag> Sort </tag>
+            <tag> sort </tag>
             
         </tags>
       
@@ -266,7 +305,7 @@
             
             <tag> 前端 </tag>
             
-            <tag> CSS </tag>
+            <tag> css </tag>
             
         </tags>
       
@@ -291,7 +330,7 @@
       
         <tags>
             
-            <tag> Mysql </tag>
+            <tag> mysql </tag>
             
             <tag> DM </tag>
             
@@ -318,9 +357,9 @@
       
         <tags>
             
-            <tag> Mysql </tag>
+            <tag> mysql </tag>
             
-            <tag> Mybatis </tag>
+            <tag> mybatis </tag>
             
         </tags>
       
@@ -358,7 +397,7 @@
       
         <tags>
             
-            <tag> Hexo </tag>
+            <tag> hexo </tag>
             
         </tags>
       
