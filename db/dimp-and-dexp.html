@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>达梦数据导入导出 | 我们的小屋</title><meta name="author" content="jzwfan"><meta name="copyright" content="jzwfan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言达梦数据库导出导入工具使用说明。备注，此备份还原方案是逻辑操作，在少量数据的情况下，性能足够，一旦数据量过大，则备份时间极长。 同步方式达梦数据库支持4种数据同步方式，这些方式可以根据特定的场景去使用。  FULL（全库） OWNER（用户） SCHEMAS（模式） TABLES（表）  参数说明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="达梦数据导入导出">
+<meta property="og:url" content="https://jzwfan.com/db/dimp-and-dexp.html">
+<meta property="og:site_name" content="我们的小屋">
+<meta property="og:description" content="前言达梦数据库导出导入工具使用说明。备注，此备份还原方案是逻辑操作，在少量数据的情况下，性能足够，一旦数据量过大，则备份时间极长。 同步方式达梦数据库支持4种数据同步方式，这些方式可以根据特定的场景去使用。  FULL（全库） OWNER（用户） SCHEMAS（模式） TABLES（表）  参数说明">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jzwfan.com/img/cover/12.jpg">
+<meta property="article:published_time" content="2024-07-01T09:12:14.000Z">
+<meta property="article:modified_time" content="2024-07-03T06:22:39.143Z">
+<meta property="article:author" content="jzwfan">
+<meta property="article:tag" content="DM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jzwfan.com/img/cover/12.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "达梦数据导入导出",
+  "url": "https://jzwfan.com/db/dimp-and-dexp.html",
+  "image": "https://jzwfan.com/img/cover/12.jpg",
+  "datePublished": "2024-07-01T09:12:14.000Z",
+  "dateModified": "2024-07-03T06:22:39.143Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jzwfan",
+      "url": "https://jzwfan.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/img.png"><link rel="canonical" href="https://jzwfan.com/db/dimp-and-dexp.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.3.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BVK9P7GSPR"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-BVK9P7GSPR')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-BVK9P7GSPR', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '达梦数据导入导出',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img.png" onerror="this.onerror=null;this.src='/img/404.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover/12.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">我们的小屋</span></a><a class="nav-page-title" href="/"><span class="site-name">达梦数据导入导出</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">达梦数据导入导出</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-01T09:12:14.000Z" title="发表于 2024-07-01 17:12:14">2024-07-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T06:22:39.143Z" title="更新于 2024-07-03 14:22:39">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>达梦数据库导出导入工具使用说明。备注，此备份还原方案是逻辑操作，在少量数据的情况下，性能足够，一旦数据量过大，则备份时间极长。</p>
+<h3 id="同步方式"><a href="#同步方式" class="headerlink" title="同步方式"></a>同步方式</h3><p>达梦数据库支持4种数据同步方式，这些方式可以根据特定的场景去使用。</p>
+<ul>
+<li>FULL（全库）</li>
+<li>OWNER（用户）</li>
+<li>SCHEMAS（模式）</li>
+<li>TABLES（表）</li>
+</ul>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><table class="data-table" data-transient-attributes="class"
+    style="width: 100%; outline: none; border-collapse: collapse;" data-width="576px">
+    <colgroup>
+        <col span="1" width="144">
+        <col span="1" width="144">
+        <col span="1" width="144">
+        <col span="1" width="144">
+    </colgroup>
+    <tbody>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>参数<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>dexp说明<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>dimp说明<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>备注<br></p>
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>USERID<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>USERID在作为导出和导入时，都是指定一个链接串。格式为：用户名/密码@库名:端口号#证书路径<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>FILE<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>file作为导出参数时，指定导出的文件名。可选参数，默认值为dexp.dmp<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>fiel作为导入参数时，指定导入使用的文件名，也就是dexp导出的文件。作为导入时，它是必选参数。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>DIRECTORY<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>directory参数指定导出和导入的目录，简单点说就是指定dmp(转储文件)的位置。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>FULL<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>full参数指定导出和导入基于整个数据库，也就是导出整个数据库或导入整个数据库。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>四种方式之一，不建议使用。<br></p>
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>OWNER<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>owner参数指定导出和导入基于用户，也就是导出或导入用户中的所有对象，多个用户使用英文逗号分割。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>四种方式之一，根据需要使用，用户与模式基本一致。<br></p>
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>SCHEMAS<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>schemas参数指定导出和导入基于模式，也就是导出或导入模式下的所有对象，多个模式使用英文逗号分割<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>四种方式之一，根据需要使用，模式与用户基本一致。<br></p>
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>TABLES<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>tables参数指定导出和导入基于表，也就是导出或导入表的结构和数据，多个表使用英文逗号分割。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>四种方式之一，根据需要使用<br></p>
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>PARALLEL<br></p>
+            </td>
+            <td colspan="2" data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>parallel参数指定导出和导入过程中使用的线程数。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>COMPRESS<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>compress参数指定导出的数据是否压缩，默认值N(不压缩)，可选值Y|N。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>无<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td data-transient-attributes="table-cell-selection" class="table-last-column"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>LOG<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-column"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>log作为导出参数时，指定导出日志的文件名。可选参数，默认值为dexp.log。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-column"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+                <p>log作为导入参数时，指定导入日志的文件名。可选参数，默认值为dimp.log。<br></p>
+            </td>
+            <td data-transient-attributes="table-cell-selection" class="table-last-column table-last-row"
+                style="min-width: auto; overflow-wrap: break-word; margin: 4px 8px; border: 1px solid rgb(217, 217, 217); padding: 4px 8px; cursor: default; vertical-align: top;">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><p>这里只记录了备份还原模式的用法，其他用法可看原文档</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 备份</span><br><span class="line">.<span class="operator">/</span>dexp SYSDBA<span class="operator">/</span>SYSDBA001<span class="variable">@127</span><span class="number">.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5236</span> FILE<span class="operator">=</span>SZSQ.dmp LOG<span class="operator">=</span>SZSQ.log DIRECTORY<span class="operator">=</span><span class="operator">/</span>data SCHEMAS<span class="operator">=</span>SZSQ</span><br><span class="line"># 还原，还原之前要删除相应表数据</span><br><span class="line">.<span class="operator">/</span>dimp SYSDBA<span class="operator">/</span>SYSDBA001<span class="variable">@127</span><span class="number">.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5236</span> FILE<span class="operator">=</span>SZSQ.dmp LOG<span class="operator">=</span>SZSQ.log DIRECTORY<span class="operator">=</span><span class="operator">/</span>data SCHEMAS<span class="operator">=</span>SZSQ</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>原地址：<a target="_blank" rel="noopener" href="https://blog.51cto.com/bxbdba/7175810">https://blog.51cto.com/bxbdba/7175810</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jzwfan.com">jzwfan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jzwfan.com/db/dimp-and-dexp.html">https://jzwfan.com/db/dimp-and-dexp.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jzwfan.com" target="_blank">我们的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DM/">DM</a></div><div class="post-share"><div class="social-share" data-image="/img/cover/12.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/linux/firewall-cmd.html" title="防火墙设置"><img class="cover" src="/img/cover/2.jpg" onerror="onerror=null;src='/img/404.png'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">防火墙设置</div></div><div class="info-2"><div class="info-item-1">前言记录一下Linux下的firewall-cmd命令的用法，以后慢慢更新，慢慢完善。  正文查看防火墙状态#查看防火墙状态systemctl status firewalld#开启防火墙systemctl start firewalld#开机启动systemctl enable firewalld 端口访问设置查看已开放的端口、IP规则 #查询打开的端口firewall-cmd --zone=public --list-ports 开放新端口，默认情况下所有端口都是关闭状态 #开放端口9001/tcp (tcp、udp等)firewall-cmd --zone=public --add-port=9001/tcp --add-port=9001/udp --permanent#批量开放9002～9005的tcp端口firewall-cmd --zone=public --add-port=9002-9005/tcp --permanent#重新载入防火墙设置，使设置生效firewall-cmd --reload 关闭已开放的端口 #关闭端口9001/tcp...</div></div></div></a><a class="pagination-related" href="/linux/yum-change-source.html" title="yum换源"><img class="cover" src="/img/cover/17.jpg" onerror="onerror=null;src='/img/404.png'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">yum换源</div></div><div class="info-2"><div class="info-item-1">前言使用yum的官方源进行yum install xxxx 的时候，速度非常慢，只有几kB/s，有时候还不到1kB/s。这就会造成安装包的速度的速度要么特变慢，要么就根本安装不了。  更新源备份mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak 下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/# Centos6wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo# Centos7wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 注：如果没有安装wget，可本地访问网址下载，上传到服务器。 清理并生成新的缓存yum clean &amp; yum...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/db/sql.html" title="Sql语句"><img class="cover" src="/img/cover/14.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-03</div><div class="info-item-2">Sql语句</div></div><div class="info-2"><div class="info-item-1">前言工作中遇到的SQL查询方法、语法、和优化记录。  SQL 方法和关键字GROUP_COUNT\WM_COUNT# mysql group_concat# separator 用来替换拼接字段， eg: 水果-素菜select	group_concat(c.category_name separator &#x27;-&#x27;) category_name,	cs.store_idfrom	dt_category_store as cs	inner join	dt_category as c	on 		cs.category_id = c.category_id and cs.category_type = 6group by cs.store_id # dm wm_concat 方式select	wm_concat(c.category_name) category_name,	cs.store_idfrom	dt_category_store as cs	inner join	dt_category as c	on 		cs.category_id =...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="artalk-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img.png" onerror="this.onerror=null;this.src='/img/404.png'" alt="avatar"/></div><div class="author-info-name">jzwfan</div><div class="author-info-description">我和我的小屋</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jzwfan"><i class="fab fa-github"></i><span>记住我</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">同步方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">使用案例</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/docker/docker-registry-clean.html" title="自建镜像仓库清理"><img src="/img/cover/6.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="自建镜像仓库清理"/></a><div class="content"><a class="title" href="/docker/docker-registry-clean.html" title="自建镜像仓库清理">自建镜像仓库清理</a><time datetime="2025-05-22T08:09:36.000Z" title="发表于 2025-05-22 16:09:36">2025-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/git/git-fork-sync.html" title="git项目同步上游项目到本项目"><img src="/img/cover/9.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="git项目同步上游项目到本项目"/></a><div class="content"><a class="title" href="/git/git-fork-sync.html" title="git项目同步上游项目到本项目">git项目同步上游项目到本项目</a><time datetime="2025-03-18T09:12:45.000Z" title="发表于 2025-03-18 17:12:45">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/python/conda-command.html" title="conda命令"><img src="/img/cover/3.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="conda命令"/></a><div class="content"><a class="title" href="/python/conda-command.html" title="conda命令">conda命令</a><time datetime="2025-03-11T05:48:27.000Z" title="发表于 2025-03-11 13:48:27">2025-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/python/conda-problem0.html" title="conda占用高CPU问题"><img src="/img/cover/7.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="conda占用高CPU问题"/></a><div class="content"><a class="title" href="/python/conda-problem0.html" title="conda占用高CPU问题">conda占用高CPU问题</a><time datetime="2025-03-11T05:45:24.000Z" title="发表于 2025-03-11 13:45:24">2025-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/linux/network-hard-disk.html" title="Linux挂载网络硬盘"><img src="/img/cover/11.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Linux挂载网络硬盘"/></a><div class="content"><a class="title" href="/linux/network-hard-disk.html" title="Linux挂载网络硬盘">Linux挂载网络硬盘</a><time datetime="2025-03-04T03:37:28.000Z" title="发表于 2025-03-04 11:37:28">2025-03-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By jzwfan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.2.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.3.5"></script><script src="/js/main.js?v=5.3.5"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let artalkItem = null
+  const option = null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+
+  const destroyArtalk = () => {
+    if (artalkItem) {
+      artalkItem.destroy()
+      artalkItem = null
+    }
+  }
+
+  const artalkChangeMode = theme => artalkItem && artalkItem.setDarkMode(theme === 'dark')
+
+  const initArtalk = (el = document, pageKey = location.pathname) => {
+    artalkItem = Artalk.init({
+      el: el.querySelector('#artalk-wrap'),
+      server: 'https://artalk.jzwfan.com',
+      site: '我们的小屋',
+      darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
+      ...option,
+      pageKey: isShuoshuo ? pageKey : (option && option.pageKey) || pageKey
+    })
+
+    if (GLOBAL_CONFIG.lightbox === 'null') return
+    artalkItem.on('list-loaded', () => {
+      artalkItem.ctx.get('list').getCommentNodes().forEach(comment => {
+        const $content = comment.getRender().$content
+        btf.loadLightbox($content.querySelectorAll('img:not([atk-emoticon])'))
+      })
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyArtalk = () => {
+        destroyArtalk()
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    btf.addGlobalFn('pjaxSendOnce', destroyArtalk, 'destroyArtalk')
+    btf.addGlobalFn('themeChange', artalkChangeMode, 'artalk')
+  }
+
+  const loadArtalk = async (el, pageKey) => {
+    if (typeof Artalk === 'object') initArtalk(el, pageKey)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.min.js')
+      initArtalk(el, pageKey)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Artalk' === 'Artalk'
+      ? window.shuoshuoComment = { loadComment: loadArtalk }
+      : window.loadOtherComment = loadArtalk
+    return
+  }
+
+  if ('Artalk' === 'Artalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('artalk-wrap'), loadArtalk)
+    else setTimeout(loadArtalk, 100)
+  } else {
+    window.loadOtherComment = loadArtalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/dist/click-show-text.min.js" data-mobile="false" data-text="努力,奋斗,加油" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
